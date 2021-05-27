@@ -2,3 +2,5 @@ package: bitbucket.org/burhanmubarok/microservice
 import:
 - package: github.com/spf13/cobra
   version: v0.0.3
+- package: github.com/gorilla/mux
+  version: v1.6.2
