@@ -48,7 +48,6 @@ func (c *Microservice) Serve() {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusNotFound)
 		data := structures.Response{
-			Code:    http.StatusNotFound,
 			Message: "URL not found",
 		}
 		json.NewEncoder(w).Encode(data)
@@ -58,7 +57,6 @@ func (c *Microservice) Serve() {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		data := structures.Response{
-			Code:    http.StatusMethodNotAllowed,
 			Message: "Method not allowed",
 		}
 		json.NewEncoder(w).Encode(data)
@@ -68,7 +66,6 @@ func (c *Microservice) Serve() {
 		res.Header().Set("Content-Type", "application/json")
 		res.WriteHeader(http.StatusOK)
 		data := structures.Response{
-			Code:    http.StatusOK,
 			Message: "Wellcome! trust me, you are a coder",
 		}
 		json.NewEncoder(res).Encode(data)
@@ -78,7 +75,6 @@ func (c *Microservice) Serve() {
 		res.Header().Set("Content-Type", "application/json")
 		res.WriteHeader(http.StatusOK)
 		data := structures.Response{
-			Code:    http.StatusOK,
 			Message: "Microservice [desc]",
 		}
 		json.NewEncoder(res).Encode(data)
