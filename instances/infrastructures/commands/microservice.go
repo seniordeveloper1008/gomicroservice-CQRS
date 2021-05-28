@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"bitbucket.org/burhanmubarok/microservice/instances/controllers"
 	"bitbucket.org/burhanmubarok/microservice/structures/https"
 	"github.com/gorilla/mux"
 )
@@ -44,23 +45,9 @@ func (c *Microservice) Serve() {
 
 	router := mux.NewRouter().StrictSlash(true)
 
-	router.NotFoundHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusNotFound)
-		data := structures.Response{
-			Message: "URL not found",
-		}
-		json.NewEncoder(w).Encode(data)
-	})
-
-	router.MethodNotAllowedHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusMethodNotAllowed)
-		data := structures.Response{
-			Message: "Method not allowed",
-		}
-		json.NewEncoder(w).Encode(data)
-	})
+	exceptionCtrl := new(controllers.Exception)
+	router.NotFoundHandler = http.HandlerFunc(exceptionCtrl.NotFound)
+	router.MethodNotAllowedHandler = http.HandlerFunc(exceptionCtrl.NotAllowed)
 
 	router.Path("/").Methods("GET").HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		res.Header().Set("Content-Type", "application/json")
