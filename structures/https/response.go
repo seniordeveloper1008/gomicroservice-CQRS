@@ -2,6 +2,7 @@ package structures
 
 // Response doc
 type Response struct {
-	Code    int
-	Message string
+	Message interface{} `json:"message"`
+	Data    interface{} `json:"data"`
+	Errors  interface{} `json:"errors"`
 }
