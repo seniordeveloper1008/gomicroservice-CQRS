@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"encoding/json"
 	"net/http"
 
+	"bitbucket.org/burhanmubarok/microservice/instances/helpers"
 	structures "bitbucket.org/burhanmubarok/microservice/structures/https"
 )
 
@@ -11,11 +11,6 @@ import (
 type Home struct{}
 
 // Get doc
-func (h *Home) Get(res http.ResponseWriter, req *http.Request) {
-	res.Header().Set("Content-Type", "application/json")
-	res.WriteHeader(http.StatusOK)
-	data := structures.Response{
-		Message: "Wellcome! trust me, you are a coder",
-	}
-	json.NewEncoder(res).Encode(data)
+func (h *Home) Get(w http.ResponseWriter, r *http.Request) {
+	new(helpers.Response).SendOK(w, structures.Response{Message: "Wellcome to Microservice [Name]"})
 }
