@@ -4,7 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 
+	instances "bitbucket.org/burhanmubarok/microservice/instances/infrastructures"
 	structures "bitbucket.org/burhanmubarok/microservice/structures/https"
+	logStruct "bitbucket.org/burhanmubarok/microservice/structures/infrastructures"
 )
 
 // Response doc
@@ -38,5 +40,7 @@ func (r *Response) send(w http.ResponseWriter, httpStatus int, data structures.R
 		Data:    data.Data,
 		Errors:  data.Errors,
 	}
+	log := &instances.Logger{}
+	log.Info(logStruct.Log{Data: responseData})
 	json.NewEncoder(w).Encode(responseData)
 }
