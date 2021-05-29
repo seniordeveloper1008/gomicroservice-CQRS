@@ -11,7 +11,7 @@ import (
 type Home struct{}
 
 // Get doc
-func (h Home) Get(res http.ResponseWriter, req *http.Request) {
+func (h *Home) Get(res http.ResponseWriter, req *http.Request) {
 	res.Header().Set("Content-Type", "application/json")
 	res.WriteHeader(http.StatusOK)
 	data := structures.Response{
