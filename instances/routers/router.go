@@ -1,4 +1,4 @@
-package instances
+package routers
 
 import (
 	"net/http"

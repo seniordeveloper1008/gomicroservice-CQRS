@@ -40,7 +40,7 @@ func (c *Microservice) Migrate() {
 func (c *Microservice) Serve() {
 	c.figlet()
 
-	handlers := new(instances.Router).Handler()
+	handlers := new(routers.Router).Handler()
 	server := &http.Server{
 		Addr:    ":8008",
 		Handler: handlers,
