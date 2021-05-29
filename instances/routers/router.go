@@ -1,11 +1,9 @@
 package instances
 
 import (
-	"encoding/json"
 	"net/http"
 
 	"bitbucket.org/burhanmubarok/microservice/instances/controllers"
-	"bitbucket.org/burhanmubarok/microservice/structures/https"
 	"github.com/gorilla/mux"
 )
 
@@ -22,15 +20,7 @@ func (r *Router) Handler() http.Handler {
 	router.MethodNotAllowedHandler = http.HandlerFunc(exceptionCtrl.NotAllowed)
 
 	router.Path("/").Methods("GET").HandlerFunc(new(controllers.Home).Get)
-
-	router.Path("/about").Methods("GET").HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
-		res.Header().Set("Content-Type", "application/json")
-		res.WriteHeader(http.StatusOK)
-		data := structures.Response{
-			Message: "Microservice [desc]",
-		}
-		json.NewEncoder(res).Encode(data)
-	})
+	router.Path("/about").Methods("GET").HandlerFunc(new(controllers.About).Get)
 
 	return router
 }
