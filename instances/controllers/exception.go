@@ -17,7 +17,7 @@ func (e Exception) NotFound(w http.ResponseWriter, r *http.Request) {
 
 // NotAllowed 405
 func (e Exception) NotAllowed(w http.ResponseWriter, r *http.Request) {
-	e.response(w, http.StatusMethodNotAllowed, "Method not allowed", nil, nil)
+	e.response(w, http.StatusMethodNotAllowed, "Method not allowed for that end point", nil, nil)
 }
 
 // InternalServerError 500
