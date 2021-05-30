@@ -41,6 +41,6 @@ func (r *Response) send(w http.ResponseWriter, httpStatus int, data structures.R
 		Errors:  data.Errors,
 	}
 	log := &instances.Logger{}
-	log.Info(logStruct.Log{Data: responseData})
+	log.Debug(logStruct.Log{Data: responseData})
 	json.NewEncoder(w).Encode(responseData)
 }
