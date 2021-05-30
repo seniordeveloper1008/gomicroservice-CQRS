@@ -27,6 +27,12 @@ func (c *Configuration) set() {
 	config.SetConfigName("app")
 	config.SetConfigType("yaml")
 	config.AddConfigPath("./")
+	config.SetDefault("microservice.name", "Microservice")
+	config.SetDefault("microservice.desc", "Microservice")
+	config.SetDefault("microservice.env", "development")
+	config.SetDefault("microservice.port", "8008")
+	config.SetDefault("microservice.debug", "false")
+	config.SetDefault("microservice.logPath", "./logs")
 	errorRead := config.ReadInConfig()
 	if errorRead != nil {
 		logData := structures.Log{Message: "Failed to read configuration file"}
