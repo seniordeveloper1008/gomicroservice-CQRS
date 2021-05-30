@@ -10,3 +10,5 @@ import:
   version: v1.0.1
 - package: github.com/spf13/viper
   version: v1.0.2
+- package: github.com/natefinch/lumberjack
+  version: v2.1
