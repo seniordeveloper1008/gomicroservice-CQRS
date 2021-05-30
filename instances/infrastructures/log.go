@@ -1,10 +1,12 @@
 package infrastructures
 
 import (
-	"os"
+	"fmt"
 
 	"bitbucket.org/burhanmubarok/microservice/structures/infrastructures"
+	"github.com/natefinch/lumberjack"
 	log "github.com/sirupsen/logrus"
+	conf "github.com/spf13/viper"
 )
 
 // Logger doc
@@ -35,13 +37,6 @@ func (l *Logger) Error(data structures.Log) {
 func (l *Logger) write(level string, data structures.Log) {
 	l.init()
 
-	file, err := os.OpenFile("logrus.log", os.O_CREATE|os.O_WRONLY, 0666)
-	if err == nil {
-		l.log.Out = file
-	} else {
-		log.Info("Failed to log to file, using default stderr")
-	}
-
 	switch level {
 	case "info", "warning":
 		l.log.WithFields(log.Fields{
@@ -67,5 +62,15 @@ func (l *Logger) init() {
 			"time": "timestamp",
 			"msg":  "message",
 		},
+	}
+
+	logName := "go.log"
+	logPathConf := conf.GetString("microservice.logPath")
+	logPath := fmt.Sprintf("%s/%s", logPathConf, logName)
+	l.log.Out = &lumberjack.Logger{
+		Filename:   logPath,
+		MaxSize:    1000, // megabytes after which new file is created
+		MaxBackups: 3,    // number of backups
+		MaxAge:     30,   //days
 	}
 }
