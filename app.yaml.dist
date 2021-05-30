@@ -1,0 +1,6 @@
+microservice:
+  name  : Microservice {name}
+  desc  : Microservice {desc}
+  env   : development
+  port  : 8008
+  debug : false
