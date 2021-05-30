@@ -4,26 +4,44 @@ import (
 	"fmt"
 	"net/http"
 
+	"bitbucket.org/burhanmubarok/microservice/instances/infrastructures"
 	"bitbucket.org/burhanmubarok/microservice/instances/routers"
 )
 
 // Microservice doc
-type Microservice struct{}
+type Microservice struct {
+	Name  string
+	Desc  string
+	Env   string
+	Port  int
+	Debug bool
+}
+
+func (c *Microservice) applyConfiguration() {
+	conf := &infrastructures.Configuration{}
+	conf.Init()
+
+	c.Name = conf.Name
+	c.Desc = conf.Desc
+	c.Env = conf.Env
+	c.Port = conf.Port
+	c.Debug = conf.Debug
+}
 
 func (c *Microservice) figlet() {
 	template := `
 +++++++++++++++++++++++++++++++++++++++++
-              Microservice
+            %s
 +++++++++++++++++++++++++++++++++++++++++
 
 env     : %s
-port    : %s
-debug   : %v
+port    : %d
+debug   : %t
 
 +++++++++++++++++++++++++++++++++++++++++
 `
 
-	fmt.Printf(template, "development", "8008", true)
+	fmt.Printf(template, c.Name, c.Env, c.Port, c.Debug)
 }
 
 // Ensure doc
@@ -38,16 +56,18 @@ func (c *Microservice) Migrate() {
 
 // Serve doc
 func (c *Microservice) Serve() {
+	c.applyConfiguration()
 	c.figlet()
 
 	handlers := new(routers.Router).Handler()
+	addr := fmt.Sprintf(":%d", c.Port)
 	server := &http.Server{
-		Addr:    ":8008",
+		Addr:    addr,
 		Handler: handlers,
 	}
 
 	serverError := server.ListenAndServe()
-	panic(serverError)
+	defer panic(serverError)
 }
 
 // Test doc
