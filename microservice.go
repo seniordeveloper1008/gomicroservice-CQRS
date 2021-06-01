@@ -1,8 +1,8 @@
 package main
 
 import (
-	"bitbucket.org/burhanmubarok/microservice/instances/infrastructures/commands"
-	"bitbucket.org/burhanmubarok/microservice/interfaces/infrastructures/commands"
+	instances "github.com/burhanmubarok/microservice/instances/infrastructures/commands"
+	interfaces "github.com/burhanmubarok/microservice/interfaces/infrastructures/commands"
 )
 
 func main() {

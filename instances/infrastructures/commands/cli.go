@@ -1,7 +1,7 @@
 package instances
 
 import (
-	"bitbucket.org/burhanmubarok/microservice/interfaces/infrastructures/commands"
+	interfaces "github.com/burhanmubarok/microservice/interfaces/infrastructures/commands"
 	"github.com/spf13/cobra"
 )
 

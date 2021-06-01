@@ -3,7 +3,7 @@ package infrastructures
 import (
 	"fmt"
 
-	"bitbucket.org/burhanmubarok/microservice/structures/infrastructures"
+	structures "github.com/burhanmubarok/microservice/structures/infrastructures"
 	"github.com/natefinch/lumberjack"
 	log "github.com/sirupsen/logrus"
 	conf "github.com/spf13/viper"

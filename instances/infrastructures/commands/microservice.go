@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"bitbucket.org/burhanmubarok/microservice/instances/infrastructures"
-	"bitbucket.org/burhanmubarok/microservice/instances/routers"
+	"github.com/burhanmubarok/microservice/instances/infrastructures"
+	"github.com/burhanmubarok/microservice/instances/routers"
 )
 
 // Microservice doc

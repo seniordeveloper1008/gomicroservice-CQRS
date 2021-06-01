@@ -3,8 +3,8 @@ package controllers
 import (
 	"net/http"
 
-	"bitbucket.org/burhanmubarok/microservice/instances/helpers"
-	structures "bitbucket.org/burhanmubarok/microservice/structures/https"
+	"github.com/burhanmubarok/microservice/instances/helpers"
+	structures "github.com/burhanmubarok/microservice/structures/https"
 )
 
 // About doc

@@ -3,7 +3,7 @@ package routers
 import (
 	"net/http"
 
-	"bitbucket.org/burhanmubarok/microservice/instances/controllers"
+	"github.com/burhanmubarok/microservice/instances/controllers"
 	"github.com/gorilla/mux"
 )
 

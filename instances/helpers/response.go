@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 
-	instances "bitbucket.org/burhanmubarok/microservice/instances/infrastructures"
-	structures "bitbucket.org/burhanmubarok/microservice/structures/https"
-	logStruct "bitbucket.org/burhanmubarok/microservice/structures/infrastructures"
+	instances "github.com/burhanmubarok/microservice/instances/infrastructures"
+	structures "github.com/burhanmubarok/microservice/structures/https"
+	logStruct "github.com/burhanmubarok/microservice/structures/infrastructures"
 )
 
 // Response doc
