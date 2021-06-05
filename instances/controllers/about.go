@@ -12,5 +12,11 @@ type About struct{}
 
 // Get doc
 func (a *About) Get(w http.ResponseWriter, r *http.Request) {
-	new(helpers.Response).SendOK(w, structures.Response{Message: "Microservice [desc]"})
+	new(helpers.Response).SendOK(w, structures.Response{Data: struct {
+		Env     string `json:"env"`
+		Version string `json:"version"`
+	}{
+		Env:     "development",
+		Version: "0.0.1",
+	}})
 }
