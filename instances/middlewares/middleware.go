@@ -3,6 +3,7 @@ package infrastructures
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 // Middleware doc
@@ -10,9 +11,7 @@ type Middleware struct{}
 
 // Apply doc
 func (m *Middleware) Apply(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
-	m.sanitize()
-	m.authenticate()
-	m.authorize()
+	m.log(r)
 	next(w, r)
 }
 
@@ -24,4 +23,8 @@ func (m *Middleware) authenticate() {
 }
 func (m *Middleware) authorize() {
 	fmt.Println("authorize")
+}
+
+func (m *Middleware) log(r *http.Request) {
+	fmt.Printf("%s %s %s%s", time.Now().UTC().Format(time.RFC3339), r.Method, r.Host, r.RequestURI)
 }
