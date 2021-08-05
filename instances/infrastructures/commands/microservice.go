@@ -31,7 +31,7 @@ func (c *Microservice) applyConfiguration() {
 func (c *Microservice) figlet() {
 	template := `
 +++++++++++++++++++++++++++++++++++++++++
-            %s
+%s
 +++++++++++++++++++++++++++++++++++++++++
 
 env     : %s
