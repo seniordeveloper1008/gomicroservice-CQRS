@@ -2,13 +2,13 @@ package structures
 
 // Log doc
 type Log struct {
-	Message string `json:"message"`
+	Entry interface{}
 }
 
 // LogCommon doc
 type LogCommon struct {
-	Log
-	Data interface{} `json:"data"`
+	Message string      `json:"message"`
+	Data    interface{} `json:"data"`
 }
 
 // LogDebug doc
