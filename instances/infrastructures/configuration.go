@@ -35,14 +35,14 @@ func (c *Configuration) set() {
 	config.SetDefault("microservice.logPath", "./logs")
 	errorRead := config.ReadInConfig()
 	if errorRead != nil {
-		logData := structures.Log{Message: "Failed to read configuration file"}
+		logData := structures.Log{"Failed to read configuration file"}
 		log := &Logger{}
 		log.Warning(logData)
 	}
 
 	config.WatchConfig()
 	config.OnConfigChange(func(e fsnotify.Event) {
-		logData := structures.Log{Message: "app.yaml just changed"}
+		logData := structures.Log{"app.yaml just changed"}
 		log := &Logger{}
 		log.Warning(logData)
 		sLog.Println("Warning: app.yaml just changed")
