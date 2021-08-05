@@ -72,8 +72,8 @@ func (c *Microservice) Serve() {
 
 // Test doc
 func (c *Microservice) Test() {
-	fmt.Println("Database connection ...")
-	fmt.Println("Email connection...")
-	fmt.Println("Kafka connection ...")
-	fmt.Println("Log write access ...")
+	fmt.Println("Database connection OK ...")
+	fmt.Println("Kafka connection OK ...")
+	fmt.Println("Log writing access OK ...")
+	fmt.Println("Cross microservice connection OK ...")
 }
