@@ -11,7 +11,7 @@ type CLI struct{}
 // Execute doc
 func (c *CLI) Execute() {
 	cli := &cobra.Command{
-		Use:   "Microservice",
+		Use:   "microservice",
 		Short: "Microservice [name]",
 		Long:  "Microservice [desc]",
 	}
