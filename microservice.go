@@ -7,6 +7,6 @@ import (
 
 func main() {
 	var cli interfaces.CLI
-	cli = &instances.CLI{}
+	cli = instances.NewCLI()
 	cli.Execute()
 }
