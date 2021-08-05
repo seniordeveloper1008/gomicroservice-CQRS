@@ -7,8 +7,8 @@ type Log struct {
 
 // LogCommon doc
 type LogCommon struct {
-	Message string      `json:"message"`
-	Data    interface{} `json:"data"`
+	Message string      `json:"message,omitempty"`
+	Data    interface{} `json:"data,omitempty"`
 }
 
 // LogDebug doc
