@@ -5,3 +5,4 @@ microservice:
   port    : 8008
   debug   : false
   logPath : ./logs
+  timezone: Asia/Jakarta
