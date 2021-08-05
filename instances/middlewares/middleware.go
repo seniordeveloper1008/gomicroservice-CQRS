@@ -26,5 +26,5 @@ func (m *Middleware) authorize() {
 }
 
 func (m *Middleware) log(r *http.Request) {
-	fmt.Printf("%s %s %s%s", time.Now().UTC().Format(time.RFC3339), r.Method, r.Host, r.RequestURI)
+	fmt.Printf("%s %s %s%s\n", time.Now().UTC().Format(time.RFC3339), r.Method, r.Host, r.RequestURI)
 }
