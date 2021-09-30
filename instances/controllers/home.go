@@ -8,9 +8,12 @@ import (
 )
 
 // Home doc
-type Home struct{}
+type Home struct {
+	Gety int
+}
 
 // Get doc
 func (h *Home) Get(w http.ResponseWriter, r *http.Request) {
-	new(helpers.Response).SendOK(w, structures.Response{Message: "Wellcome to Microservice <Name>"})
+	responseData := structures.Response{Message: "Wellcome to Microservice <Name>", Data: "Any data should be loaded here"}
+	new(helpers.Response).SendOK(w, responseData)
 }
