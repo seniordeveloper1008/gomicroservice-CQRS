@@ -1,28 +1,41 @@
 package infrastructures
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"time"
 )
 
 // Middleware doc
-type Middleware struct{}
+type Middleware struct {
+	ctx context.Context
+}
 
 // Apply doc
 func (m *Middleware) Apply(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 	m.log(r)
+	m.sanitize()
+	m.authenticate()
+	m.authorize()
+	m.inject()
 	next(w, r)
 }
 
 func (m *Middleware) sanitize() {
-	fmt.Println("sanitize")
+	fmt.Println("sanitizing")
 }
+
 func (m *Middleware) authenticate() {
-	fmt.Println("authenticate")
+	fmt.Println("authenticating")
 }
+
 func (m *Middleware) authorize() {
-	fmt.Println("authorize")
+	fmt.Println("authorizing")
+}
+
+func (m *Middleware) inject() {
+	fmt.Println("injecting some of common dependency")
 }
 
 func (m *Middleware) log(r *http.Request) {
