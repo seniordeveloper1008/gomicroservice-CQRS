@@ -15,6 +15,18 @@ type Router struct {
 	router  *negroni.Negroni
 }
 
+// Init doc
+func (r *Router) Init() {
+	r.applyHandler()
+	r.applyRouter()
+	r.applyRoute()
+}
+
+// Handler doc
+func (r *Router) Handler() http.Handler {
+	return r.router
+}
+
 func (r *Router) applyHandler() {
 	exceptionCtrl := new(controllers.Exception)
 	r.handler = mux.NewRouter().StrictSlash(true)
@@ -31,16 +43,4 @@ func (r *Router) applyRouter() {
 func (r *Router) applyRoute() {
 	r.handler.Path("/").Methods("GET").HandlerFunc(new(controllers.Home).Get)
 	r.handler.Path("/about").Methods("GET").HandlerFunc(new(controllers.About).Get)
-}
-
-// Init doc
-func (r *Router) Init() {
-	r.applyHandler()
-	r.applyRouter()
-	r.applyRoute()
-}
-
-// Handler doc
-func (r *Router) Handler() http.Handler {
-	return r.router
 }
