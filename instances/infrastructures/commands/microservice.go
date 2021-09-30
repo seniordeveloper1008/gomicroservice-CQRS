@@ -58,8 +58,9 @@ func (c *Microservice) Migrate() {
 func (c *Microservice) Serve() {
 	c.applyConfiguration()
 	c.figlet()
-
-	handlers := new(routers.Router).Handler()
+	router := new(routers.Router)
+	router.Init()
+	handlers := router.Handler()
 	addr := fmt.Sprintf(":%d", c.Port)
 	server := &http.Server{
 		Addr:    addr,

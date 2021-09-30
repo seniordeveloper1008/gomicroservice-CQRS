@@ -10,23 +10,37 @@ import (
 )
 
 // Router doc
-type Router struct{}
+type Router struct {
+	handler *mux.Router
+	router  *negroni.Negroni
+}
+
+func (r *Router) applyHandler() {
+	exceptionCtrl := new(controllers.Exception)
+	r.handler = mux.NewRouter().StrictSlash(true)
+	r.handler.NotFoundHandler = http.HandlerFunc(exceptionCtrl.NotFound)
+	r.handler.MethodNotAllowedHandler = http.HandlerFunc(exceptionCtrl.NotAllowed)
+}
+
+func (r *Router) applyRouter() {
+	r.router = negroni.New()
+	r.router.Use(negroni.HandlerFunc(new(mid.Middleware).Apply))
+	r.router.UseHandler(r.handler)
+}
+
+func (r *Router) applyRoute() {
+	r.handler.Path("/").Methods("GET").HandlerFunc(new(controllers.Home).Get)
+	r.handler.Path("/about").Methods("GET").HandlerFunc(new(controllers.About).Get)
+}
+
+// Init doc
+func (r *Router) Init() {
+	r.applyHandler()
+	r.applyRouter()
+	r.applyRoute()
+}
 
 // Handler doc
 func (r *Router) Handler() http.Handler {
-
-	routeHandler := mux.NewRouter().StrictSlash(true)
-
-	exceptionCtrl := new(controllers.Exception)
-	routeHandler.NotFoundHandler = http.HandlerFunc(exceptionCtrl.NotFound)
-	routeHandler.MethodNotAllowedHandler = http.HandlerFunc(exceptionCtrl.NotAllowed)
-
-	routeHandler.Path("/").Methods("GET").HandlerFunc(new(controllers.Home).Get)
-	routeHandler.Path("/about").Methods("GET").HandlerFunc(new(controllers.About).Get)
-
-	router := negroni.New()
-	router.Use(negroni.HandlerFunc(new(mid.Middleware).Apply))
-	router.UseHandler(routeHandler)
-
-	return router
+	return r.router
 }
