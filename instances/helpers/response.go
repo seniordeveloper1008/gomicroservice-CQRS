@@ -6,7 +6,7 @@ import (
 
 	instances "github.com/burhanmubarok/microservice/instances/infrastructures"
 	structures "github.com/burhanmubarok/microservice/structures/https"
-	logStruct "github.com/burhanmubarok/microservice/structures/infrastructures"
+	infraStruct "github.com/burhanmubarok/microservice/structures/infrastructures"
 )
 
 // Response doc
@@ -40,7 +40,8 @@ func (r *Response) send(w http.ResponseWriter, httpStatus int, data structures.R
 		Data:    data.Data,
 		Errors:  data.Errors,
 	}
-	log := &instances.Logger{}
-	log.Debug(logStruct.Log{Data: responseData})
+	customLog := &instances.Logger{}
+	logContent := infraStruct.Log{Entry: responseData}
+	customLog.Debug(logContent)
 	json.NewEncoder(w).Encode(responseData)
 }
