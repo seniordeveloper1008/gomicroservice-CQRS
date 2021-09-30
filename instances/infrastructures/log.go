@@ -2,6 +2,7 @@ package infrastructures
 
 import (
 	"fmt"
+	"sync"
 
 	structures "github.com/burhanmubarok/microservice/structures/infrastructures"
 	"github.com/natefinch/lumberjack"
@@ -11,45 +12,52 @@ import (
 
 // Logger doc
 type Logger struct {
-	log *log.Logger
+	log     *log.Logger
+	content interface{}
+	mutex   sync.Mutex
+}
+
+func (l *Logger) set(data interface{}) {
+	l.content = data
 }
 
 // Debug doc
-func (l *Logger) Debug(data structures.Log) {
-	l.write("debug", data)
+func (l *Logger) Debug(data interface{}) {
+	l.set(data)
+	l.write("debug")
 }
 
 // Info doc
 func (l *Logger) Info(data structures.Log) {
-	l.write("info", data)
+	// l.write("info", data)
 }
 
 // Warning doc
 func (l *Logger) Warning(data structures.Log) {
-	l.write("warning", data)
+	// l.write("warning", data)
 }
 
 // Error doc
 func (l *Logger) Error(data structures.Log) {
-	l.write("error", data)
+	// l.write("error", data)
 }
 
-func (l *Logger) write(level string, data structures.Log) {
+func (l *Logger) write(level string) {
 	l.init()
 
 	switch level {
 	case "info", "warning":
 		l.log.WithFields(log.Fields{
-			"data": data,
-		}).Info(data.Message)
+			// "data": data,
+		}).Info(l.content)
 	case "error":
 		l.log.WithFields(log.Fields{
-			"stacks": data,
-		}).Error(data.Message)
+			// "stacks": data,
+		}).Error(l.content)
 	default:
 		l.log.WithFields(log.Fields{
-			"data": data,
-		}).Debug(data.Message)
+			"data": l.content,
+		}).Debug(l.content)
 	}
 }
 
