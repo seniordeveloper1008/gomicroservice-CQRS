@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sync"
 
-	structures "github.com/burhanmubarok/microservice/structures/infrastructures"
+	structures "github.com/burubur/microservice/structures/infrastructures"
 	"github.com/natefinch/lumberjack"
 	log "github.com/sirupsen/logrus"
 	conf "github.com/spf13/viper"
@@ -48,11 +48,11 @@ func (l *Logger) write(level string) {
 	switch level {
 	case "info", "warning":
 		l.log.WithFields(log.Fields{
-			// "data": data,
+		// "data": data,
 		}).Info(l.content)
 	case "error":
 		l.log.WithFields(log.Fields{
-			// "stacks": data,
+		// "stacks": data,
 		}).Error(l.content)
 	default:
 		l.log.WithFields(log.Fields{

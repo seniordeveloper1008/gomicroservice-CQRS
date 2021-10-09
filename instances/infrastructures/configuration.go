@@ -3,7 +3,7 @@ package infrastructures
 import (
 	sLog "log"
 
-	structures "github.com/burhanmubarok/microservice/structures/infrastructures"
+	structures "github.com/burubur/microservice/structures/infrastructures"
 	"github.com/fsnotify/fsnotify"
 	config "github.com/spf13/viper"
 )

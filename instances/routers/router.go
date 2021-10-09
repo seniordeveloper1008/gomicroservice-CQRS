@@ -3,8 +3,8 @@ package routers
 import (
 	"net/http"
 
-	"github.com/burhanmubarok/microservice/instances/controllers"
-	mid "github.com/burhanmubarok/microservice/instances/middlewares"
+	"github.com/burubur/microservice/instances/controllers"
+	mid "github.com/burubur/microservice/instances/middlewares"
 	"github.com/gorilla/mux"
 	"github.com/urfave/negroni"
 )

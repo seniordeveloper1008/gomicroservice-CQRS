@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"net/http"
 
-	instances "github.com/burhanmubarok/microservice/instances/infrastructures"
-	structures "github.com/burhanmubarok/microservice/structures/https"
-	infraStruct "github.com/burhanmubarok/microservice/structures/infrastructures"
+	instances "github.com/burubur/microservice/instances/infrastructures"
+	structures "github.com/burubur/microservice/structures/https"
+	infraStruct "github.com/burubur/microservice/structures/infrastructures"
 )
 
 // Response doc
